@@ -3,35 +3,55 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { ArrowLeftOnRectangleIcon, EnvelopeIcon, KeyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
-
-// ナビゲーション
-const subNavigation = [
-  {
-    name: "プロフィール",
-    icon: UserCircleIcon,
-    href: "/settings/profile",
-  },
-  {
-    name: "メールアドレス",
-    icon: EnvelopeIcon,
-    href: "/settings/email",
-  },
-  {
-    name: "パスワード",
-    icon: KeyIcon,
-    href: "/settings/password",
-  },
-  {
-    name: "ログアウト",
-    icon: ArrowLeftOnRectangleIcon,
-    href: "/settings/logout",
-  },
-] as const;
+import { ArrowLeftOnRectangleIcon, ComputerDesktopIcon, CreditCardIcon, EnvelopeIcon, KeyIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { useStore } from "@/_store";
+import { useEffect, useState } from "react";
 
 // レイアウト
 const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
+  const { user } = useStore()
+  const [userId, setUserId] = useState('')
+
+  useEffect(()=> {
+if(user.id) {
+  setUserId(user.id)
+}
+  },[user.id])
+
+    // ナビゲーション
+    const subNavigation = [
+      {
+        name: 'プロフィール',
+        icon: UserCircleIcon,
+        href: '/settings/profile',
+      },
+      {
+        name: 'マイページ',
+        icon: ComputerDesktopIcon,
+        href: userId ? `/member/${userId}` : '/',
+      },
+      {
+        name: 'メールアドレス',
+        icon: EnvelopeIcon,
+        href: '/settings/email',
+      },
+      {
+        name: 'パスワード',
+        icon: KeyIcon,
+        href: '/settings/password',
+      },
+      {
+        name: 'カスタマーポータル',
+        icon: CreditCardIcon,
+        href: '/settings/customer-portal',
+      },
+      {
+        name: 'ログアウト',
+        icon: ArrowLeftOnRectangleIcon,
+        href: '/settings/logout',
+      },
+    ]
 
   return (
     <div className="grid grid-cols-3 gap-3">
