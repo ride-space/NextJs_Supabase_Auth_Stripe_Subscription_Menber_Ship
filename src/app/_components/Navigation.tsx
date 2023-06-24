@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect } from "react";
 import Image from "next/image";
@@ -20,6 +20,7 @@ export const Navigation = ({ session, profile }: { session: Session | null; prof
       name: session && profile ? profile.name : "",
       introduce: session && profile ? profile.introduce : "",
       avatar_url: session && profile ? profile.avatar_url : "",
+      customer_id: session && profile ? profile.customer_id : "",
     });
   }, [session, setUser, profile]);
 
