@@ -8,7 +8,7 @@ type StateType = {
 };
 
 export const useStore = create<StateType>((set) => ({
-  user: { id: "", email: "", name: "", introduce: "", avatar_url: "" },
+  user: { id: "", email: "", name: "", introduce: "", avatar_url: "", customer_id: "" },
   // アップデート
   setUser: (payload) => set({ user: payload }),
 }));
