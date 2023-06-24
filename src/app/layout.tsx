@@ -6,9 +6,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Supabase Auth",
-  description: "Supabase Auth",
-};
+  title: 'Supabase Membership',
+  description: 'Supabase Membership',
+}
 
 // レイアウト
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
